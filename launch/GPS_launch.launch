@@ -1,0 +1,7 @@
+<launch>
+
+    <!-- Launch the duro driver node-->
+    <include file="$(find duro_gps_driver)/launch/duro_example.launch "/>
+
+    
+</launch>
