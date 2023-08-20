@@ -1,0 +1,14 @@
+<launch>
+    <!-- Start rviz with a pre-configured AerialMap instance. It will use the fake GPS fix from above. -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find agribot_project)/launch/GPS_view.rviz"/>
+
+    <!-- Launch the processing node-->
+    <arg name="node_start_delay" default="1.0" />
+    <node pkg="agribot_project" type="processing_data.py" name="gps_process" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+
+    <!-- Launch the rosbag -->
+    
+    <arg name="node_start_delay2" default="3.0" /> 
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/aurel/ROS/dataset_ws/gps-imu-2020-12-14-campus-12-40.bag" launch-prefix="bash -c 'sleep $(arg node_start_delay2); $0 $@' "/>
+ 
+</launch>
